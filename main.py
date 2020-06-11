@@ -4,7 +4,10 @@ stemmer = LancasterStemmer()
 
 import numpy
 import tflearn
+import nltk
+nltk.download('punkt')
 import tensorflow
+
 import random
 
 import json
@@ -39,7 +42,7 @@ words = sorted(list(set(words)))
 labels = sorted(labels)
 
 
-# Training, look if the root word of different words from patterns are exist
+# Preprocessing data, creating a bag of words
 training = []
 output = []
 
@@ -65,3 +68,21 @@ for x, doc in enumerate(docs_x):
 # Transform input to numpy
 training = numpy.array(training)
 output = numpy.array(output)
+
+# Developing the model
+tensorflow.reset_default_graph()
+# Input layer
+net = tflearn.input_data(shape=[None, len(training[0])])
+# Hidden layers
+net = tflearn.fully_connected(net, 8)
+net = tflearn.fully_connected(net, 8)
+# Output layer, with activation function softmax
+# that will give a probability to each neuron
+net = tflearn.fully_connected(net, len(output[0]), activation="softmax")
+net = tflearn.regression(net)
+# Type of neuronal network DNN
+model = tflearn.DNN(net)
+# Training model, nepoch=the amount of times that the model
+# will see the same information while training
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+model.save("model.tflearn")
