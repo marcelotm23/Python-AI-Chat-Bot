@@ -19,9 +19,9 @@
          "responses": ["You can call me Tim.", "I'm Tim!", "I'm Tim aka Tech With Tim."],
          "context_set": ""
         },
-        {"tag": "shop",
-         "patterns": ["Id like to buy something", "whats on the menu", "what do you reccommend?", "could i get something to eat"],
-         "responses": ["We sell chocolate chip cookies for $2!", "Cookies are on the menu!"],
+        {"tag": "feelings",
+         "patterns": ["How are you?", "How do you feel?", "Whats up?"],
+         "responses": ["I feel all lonely, a man on the outside, a foreigner...", "I was losing myself in the music there for a moment, forgive me"],
          "context_set": ""
         },
         {"tag": "hours",

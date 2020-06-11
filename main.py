@@ -91,14 +91,14 @@ net = tflearn.regression(net)
 # Type of neuronal network DNN
 model = tflearn.DNN(net)
 # Load model
-try:
+"""try:
     model.load("model.tflearn")
 
-except:
-    # Training model, nepoch=the amount of times that the model
-    # will see the same information while training
-    model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
-    model.save("model.tflearn")
+except:"""
+# Training model, nepoch=the amount of times that the model
+# will see the same information while training
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+model.save("model.tflearn")
 
 
 # Generate a bag of words as numpy array from a provided string
@@ -133,8 +133,12 @@ def chat():
         for tg in data["intents"]:
             if tg['tag'] == tag:
                 responses = tg['responses']
+                print(random.choice(responses))
 
-        print(random.choice(responses))
+        if(responses==""):
+            print("Sorry, but i don't undestand you")
+
+
 
 chat()
 
