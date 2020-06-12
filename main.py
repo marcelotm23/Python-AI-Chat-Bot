@@ -1,15 +1,11 @@
-import nltk
 from nltk.stem.lancaster import LancasterStemmer
 stemmer = LancasterStemmer()
-
 import numpy
 import tflearn
 import nltk
 nltk.download('punkt')
 import tensorflow
-
 import random
-
 import json
 import pickle
 
@@ -97,7 +93,7 @@ model = tflearn.DNN(net)
 except:"""
 # Training model, nepoch=the amount of times that the model
 # will see the same information while training
-model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)
+model.fit(training, output, n_epoch=3000, batch_size=8, show_metric=True)
 model.save("model.tflearn")
 
 
